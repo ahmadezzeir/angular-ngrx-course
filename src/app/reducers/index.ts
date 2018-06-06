@@ -1,27 +1,28 @@
-import { User } from "./../model/user.model";
 import {
   ActionReducer,
   ActionReducerMap,
   createFeatureSelector,
   createSelector,
   MetaReducer
-} from "@ngrx/store";
-import { environment } from "../../environments/environment";
-import { Action,  } from "@ngrx/store";
-import { AuthState } from "../auth/auth.reducer";
+} from '@ngrx/store';
+import { environment } from '../../environments/environment';
+import {User} from '../model/user.model';
+import {AuthActions, AuthActionTypes} from '../auth/auth.actions';
 import {storeFreeze} from 'ngrx-store-freeze';
-import { routerReducer } from "@ngrx/router-store";
+import {routerReducer} from '@ngrx/router-store';
+
 
 export interface AppState {
- auth: AuthState
+
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-  auth: undefined,
   router: routerReducer
-  //router: routerReducer
 };
 
-export const metaReducers: MetaReducer<AppState>[] = !environment.production
-  ? [storeFreeze]
-  : [];
+
+
+
+
+export const metaReducers: MetaReducer<AppState>[] =
+  !environment.production ? [storeFreeze] : [];
