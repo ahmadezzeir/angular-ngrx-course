@@ -7,17 +7,21 @@ import {
   MetaReducer
 } from "@ngrx/store";
 import { environment } from "../../environments/environment";
-import { Action } from "@ngrx/store";
+import { Action,  } from "@ngrx/store";
 import { AuthState } from "../auth/auth.reducer";
+import {storeFreeze} from 'ngrx-store-freeze';
+import { routerReducer } from "@ngrx/router-store";
 
 export interface AppState {
  auth: AuthState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-  auth: undefined
+  auth: undefined,
+  router: routerReducer
+  //router: routerReducer
 };
 
 export const metaReducers: MetaReducer<AppState>[] = !environment.production
-  ? []
+  ? [storeFreeze]
   : [];
