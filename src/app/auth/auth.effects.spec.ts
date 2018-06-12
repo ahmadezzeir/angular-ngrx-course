@@ -1,6 +1,10 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
+<<<<<<< HEAD
 import { Observable } from 'rxjs';
+=======
+import { Observable } from 'rxjs/Observable';
+>>>>>>> master
 
 import { AuthEffects } from './auth.effects';
 

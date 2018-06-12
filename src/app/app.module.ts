@@ -13,6 +13,7 @@ import {
 } from "@angular/material";
 import { HttpClientModule } from "@angular/common/http";
 
+<<<<<<< HEAD
 import { RouterModule, Routes } from "@angular/router";
 import { AuthModule } from "./auth/auth.module";
 import { StoreModule } from "@ngrx/store";
@@ -22,6 +23,12 @@ import {
   RouterStateSerializer,
   StoreRouterConnectingModule
 } from "@ngrx/router-store";
+=======
+import { EffectsModule } from '@ngrx/effects';
+import { reducers, metaReducers } from './reducers';
+import {AuthGuard} from './auth/auth.guard';
+import {CustomSerializer} from './shared/utils';
+>>>>>>> master
 
 import { EffectsModule } from "@ngrx/effects";
 import { reducers, metaReducers } from "./reducers";
@@ -29,6 +36,7 @@ import { AuthGuard } from "./auth/auth.guard";
 import { CustomSerializer } from "./auth/shared/utils";
 
 const routes: Routes = [
+<<<<<<< HEAD
   {
     path: "courses",
     loadChildren: "./courses/courses.module#CoursesModule"
@@ -38,9 +46,21 @@ const routes: Routes = [
     path: "**",
     redirectTo: "/"
   }
+=======
+    {
+        path: 'courses',
+        loadChildren: './courses/courses.module#CoursesModule',
+        canActivate: [AuthGuard],
+    },
+    {
+        path: "**",
+        redirectTo: '/'
+    }
+>>>>>>> master
 ];
 
 @NgModule({
+<<<<<<< HEAD
   declarations: [AppComponent],
   imports: [
     BrowserModule,
@@ -62,5 +82,30 @@ const routes: Routes = [
     { provide: RouterStateSerializer, useClass: CustomSerializer }
   ],
   bootstrap: [AppComponent]
+=======
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        RouterModule.forRoot(routes),
+        HttpClientModule,
+        MatMenuModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatListModule,
+        MatToolbarModule,
+        AuthModule.forRoot(),
+        StoreModule.forRoot(reducers, { metaReducers }),
+        !environment.production ? StoreDevtoolsModule.instrument() : [],
+        EffectsModule.forRoot([]),
+        StoreRouterConnectingModule.forRoot({stateKey:'router'})
+    ],
+    providers: [
+      { provide: RouterStateSerializer, useClass: CustomSerializer }
+    ],
+    bootstrap: [AppComponent]
+>>>>>>> master
 })
 export class AppModule {}
